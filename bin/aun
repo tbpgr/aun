@@ -1,0 +1,68 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+require 'aun_core'
+require 'aun/version'
+require 'thor'
+
+module Aun
+  # = Aun CLI
+  class CLI < Thor
+    class_option :help, type: :boolean, aliases: '-h', desc: 'help message.'
+    class_option :version, type: :boolean, desc: 'version'
+
+    desc 'init', 'Generate Aundefinition.csv template'
+    def init
+      Aun::DefinitionManager.new.init
+      exit(true)
+    rescue
+      exit(false)
+    end
+
+    desc 'inspect_all', 'inspect_all'
+    def inspect_all
+      call_finder_no_arity(:inspect_all)
+    end
+
+    %i(talk owner_talk talk_with_origin inspect).each do |m|
+      desc m.to_s, m.to_s
+      define_method m do |key|
+        call_finder_1_arity(m, key)
+      end
+    end
+
+    desc 'version', 'version'
+    def version
+      p Aun::VERSION
+    end
+
+    private
+
+    def call_finder_no_arity(m)
+      af = get_finder_instance
+      puts af.send(m)
+      exit(true)
+    rescue => e
+      STDERR.puts(e.backtrace)
+      exit(false)
+    end
+
+    def call_finder_1_arity(m, key)
+      af = get_finder_instance
+      puts af.send(m, key.encode('utf-8'))
+      exit(true)
+    rescue => e
+      STDERR.puts(e.backtrace)
+      exit(false)
+    end
+
+    def get_finder_instance
+      user_definition = Aun::DefinitionManager.new.load_user_definition
+      af = Aun::Finder.new
+      af.add_messages(user_definition)
+      af
+    end
+  end
+end
+
+Aun::CLI.start(ARGV)
