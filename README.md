@@ -1,5 +1,8 @@
 # Aun
 
+[![Gem Version](https://badge.fury.io/rb/aun.svg)](http://badge.fury.io/rb/aun)
+[![Build Status](https://travis-ci.org/tbpgr/aun.png?branch=master)](https://travis-ci.org/tbpgr/aun)
+
 Aun [阿吽] は「阿吽の呼吸」、「ツー」といえば「カー」など  
 A に呼応して B のメッセージを返却するためのツールです。  
 これといって有効な用途はありません。ジョークのたぐいです。  
