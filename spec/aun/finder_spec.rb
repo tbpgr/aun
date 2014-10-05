@@ -17,6 +17,13 @@ describe Aun::Finder do
         case_title: 'not exist key',
         key: '山んば',
         expected: ''
+      },
+      {
+        case_no: 3,
+        case_title: 'valid key with origin filter',
+        key: 'ゆ・・・ゆるさん・・・',
+        origin_filter: 'ドラゴンボール',
+        expected: 'ぜったいにゆるさんぞ虫ケラども!!!'
       }
     ]
 
@@ -29,7 +36,12 @@ describe Aun::Finder do
           aun_message = Aun::Finder.new
 
           # -- when --
-          actual = aun_message.talk(c[:key])
+          actual =
+            if c[:origin_filter]
+              aun_message.talk(c[:key], c[:origin_filter])
+            else
+              aun_message.talk(c[:key])
+            end
 
           # -- then --
           expect(actual).to eq(c[:expected])
@@ -61,6 +73,13 @@ describe Aun::Finder do
         case_title: 'not exist key',
         key: '山んば',
         expected: ''
+      },
+      {
+        case_no: 3,
+        case_title: 'valid key with origin filter',
+        key: 'ゆ・・・ゆるさん・・・',
+        origin_filter: 'ドラゴンボール',
+        expected: 'フリーザ「ぜったいにゆるさんぞ虫ケラども!!!」'
       }
     ]
 
@@ -73,7 +92,12 @@ describe Aun::Finder do
           aun_message = Aun::Finder.new
 
           # -- when --
-          actual = aun_message.owner_talk(c[:key])
+          actual =
+            if c[:origin_filter]
+              aun_message.owner_talk(c[:key], c[:origin_filter])
+            else
+              aun_message.owner_talk(c[:key])
+            end
 
           # -- then --
           expect(actual).to eq(c[:expected])
@@ -105,6 +129,13 @@ describe Aun::Finder do
         case_title: 'not exist key',
         key: '山んば',
         expected: ''
+      },
+      {
+        case_no: 3,
+        case_title: 'valid key with origin filter',
+        key: 'ゆ・・・ゆるさん・・・',
+        origin_filter: 'ドラゴンボール',
+        expected: 'フリーザ「ぜったいにゆるさんぞ虫ケラども!!!」 from [ドラゴンボール]'
       }
     ]
 
@@ -117,7 +148,12 @@ describe Aun::Finder do
           aun_message = Aun::Finder.new
 
           # -- when --
-          actual = aun_message.talk_with_origin(c[:key])
+          actual =
+            if c[:origin_filter]
+              aun_message.talk_with_origin(c[:key], c[:origin_filter])
+            else
+              aun_message.talk_with_origin(c[:key])
+            end
 
           # -- then --
           expect(actual).to eq(c[:expected])
@@ -149,6 +185,13 @@ describe Aun::Finder do
         case_title: 'not exist key',
         key: '山んば',
         expected: ''
+      },
+      {
+        case_no: 3,
+        case_title: 'valid key with origin filter',
+        key: 'ゆ・・・ゆるさん・・・',
+        origin_filter: 'ドラゴンボール',
+        expected: "阿:ゆ・・・ゆるさん・・・\t吽:ぜったいにゆるさんぞ虫ケラども!!!\t発言者:フリーザ\t原典:ドラゴンボール,\tユーザー定義:false"
       }
     ]
 
@@ -161,7 +204,12 @@ describe Aun::Finder do
           aun_message = Aun::Finder.new
 
           # -- when --
-          actual = aun_message.inspect(c[:key])
+          actual =
+            if c[:origin_filter]
+              aun_message.inspect(c[:key], c[:origin_filter])
+            else
+              aun_message.inspect(c[:key])
+            end
 
           # -- then --
           expect(actual).to eq(c[:expected])
@@ -190,6 +238,20 @@ describe Aun::Finder do
 阿:山\t吽:川\t発言者:unknown\t原典:unknown,\tユーザー定義:false
 阿:ぬるぽ\t吽:ガッ\t発言者:unknown\t原典:unknown,\tユーザー定義:false
 阿:もうおわりだ\t吽:戸棚のウラはネズミの卵でいっぱいだー！\t発言者:二階堂昭夫\t原典:動物のお医者さん,\tユーザー定義:false
+阿:オス\t吽:オラ悟空\t発言者:孫悟空\t原典:ドラゴンボール,\tユーザー定義:false
+阿:今度は木っ端微塵にしてやる。あの地球人のように\t吽:クリリンのことか───────っ!!!!!\t発言者:孫悟空\t原典:ドラゴンボール,\tユーザー定義:false
+阿:ゆ・・・ゆるさん・・・\t吽:ぜったいにゆるさんぞ虫ケラども!!!\t発言者:フリーザ\t原典:ドラゴンボール,\tユーザー定義:false
+阿:ゆ・・・ゆるさん・・・\t吽:ぜったいにゆるさんぞ虫ケラども!!!\t発言者:山田 太郎\t原典:珍遊記,\tユーザー定義:false
+        EOS
+      },
+      {
+        case_no: 2,
+        case_title: 'valid key with origin filter',
+        origin_filter: 'ドラゴンボール',
+        expected: <<-EOS
+阿:オス\t吽:オラ悟空\t発言者:孫悟空\t原典:ドラゴンボール,\tユーザー定義:false
+阿:今度は木っ端微塵にしてやる。あの地球人のように\t吽:クリリンのことか───────っ!!!!!\t発言者:孫悟空\t原典:ドラゴンボール,\tユーザー定義:false
+阿:ゆ・・・ゆるさん・・・\t吽:ぜったいにゆるさんぞ虫ケラども!!!\t発言者:フリーザ\t原典:ドラゴンボール,\tユーザー定義:false
         EOS
       }
     ]
@@ -204,6 +266,12 @@ describe Aun::Finder do
 
           # -- when --
           actual = aun_message.inspect_all
+          actual =
+            if c[:origin_filter]
+              aun_message.inspect_all(c[:origin_filter])
+            else
+              aun_message.inspect_all
+            end
 
           # -- then --
           expect(actual).to eq(c[:expected].chomp)
@@ -228,7 +296,13 @@ describe Aun::Finder do
         case_no: 1,
         case_title: 'valid case',
         expected: Aun::DefaultMessages::MESSAGES
-      }
+      },
+      {
+        case_no: 1,
+        case_title: 'valid case',
+        origin_filter: 'ドラゴンボール',
+        expected: Aun::DefaultMessages::MESSAGES.select { |e|e.origin == 'ドラゴンボール' }
+      },
     ]
 
     cases.each do |c|
@@ -240,8 +314,12 @@ describe Aun::Finder do
           aun_message = Aun::Finder.new
 
           # -- when --
-          # TODO: implement execute code
-          actual = aun_message.aun_definitions
+          actual =
+            if c[:origin_filter]
+              aun_message.aun_definitions(c[:origin_filter])
+            else
+              aun_message.aun_definitions
+            end
 
           # -- then --
           expect(actual).to eq(c[:expected])
@@ -274,7 +352,7 @@ describe Aun::Finder do
         'カー',
         user_defined: true
       )
-        ]
+    ]
 
     cases = [
       {

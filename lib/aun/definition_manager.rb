@@ -21,6 +21,9 @@ module Aun
       end
     end
 
+    # rubocop:disable MethodLength
+
+    # load_user_definition
     def load_user_definition
       return [] unless File.exist?(AUNDEFINITION_FILE)
       memo = []
@@ -34,6 +37,7 @@ module Aun
       end
       memo
     end
+    # rubocop:enable MethodLength
 
     private
     def empty_to_unknown(target)
