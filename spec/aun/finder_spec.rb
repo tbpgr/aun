@@ -189,6 +189,7 @@ describe Aun::Finder do
 阿:君名前は？\t吽:田原年彦\t発言者:田原年彦\t原典:行け!稲中卓球部,\tユーザー定義:false
 阿:山\t吽:川\t発言者:unknown\t原典:unknown,\tユーザー定義:false
 阿:ぬるぽ\t吽:ガッ\t発言者:unknown\t原典:unknown,\tユーザー定義:false
+阿:もうおわりだ\t吽:戸棚のウラはネズミの卵でいっぱいだー！\t発言者:二階堂昭夫\t原典:動物のお医者さん,\tユーザー定義:false
         EOS
       }
     ]
