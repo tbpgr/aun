@@ -133,6 +133,15 @@ print finder.talk_with_origin('ぬるぽ'), "\n"
 print finder.talk('やらないか？'), "\n"
 print finder.owner_talk('やらないか？'), "\n"
 print finder.talk_with_origin('やらないか？'), "\n"
+print finder.talk_with_origin('ゆ・・・ゆるさん・・・'), "\n"
+print finder.talk_with_origin('ゆ・・・ゆるさん・・・'), "\n"
+print finder.talk_with_origin('ゆ・・・ゆるさん・・・'), "\n"
+
+puts "!!! ver 0.0.2. 原典フィルタ !!!"
+print finder.inspect_all('ドラゴンボール'), "\n"
+print finder.talk_with_origin('ゆ・・・ゆるさん・・・', 'ドラゴンボール'), "\n"
+print finder.talk_with_origin('ゆ・・・ゆるさん・・・', 'ドラゴンボール'), "\n"
+print finder.talk_with_origin('ゆ・・・ゆるさん・・・', 'ドラゴンボール'), "\n"
 ~~~
 
 ### 出力
@@ -152,6 +161,16 @@ print finder.talk_with_origin('やらないか？'), "\n"
 アーッ！
 阿部さん「アーッ！」
 阿部さん「アーッ！」 from [くそみそテクニック]
+フリーザ「ぜったいにゆるさんぞ虫ケラども!!!」 from [ドラゴンボール]
+山田 太郎「ぜったいにゆるさんぞ虫ケラども!!!」 from [珍遊記]
+フリーザ「ぜったいにゆるさんぞ虫ケラども!!!」 from [ドラゴンボール]
+!!! ver 0.0.2. 原典フィルタ !!!
+阿:オス  吽:オラ悟空  発言者:孫悟空 原典:ドラゴンボール, ユーザー定義:false
+阿:今度は木っ端微塵にしてやる。あの地球人のように 吽:クリリンのことか───────っ!!!!! 発言者:孫悟空 原典:ドラゴンボール, ユーザー定義:false
+阿:ゆ・・・ゆるさん・・・ 吽:ぜったいにゆるさんぞ虫ケラども!!!  発言者:フリーザ  原典:ドラゴンボール, ユーザー定義:false
+フリーザ「ぜったいにゆるさんぞ虫ケラども!!!」 from [ドラゴンボール]
+フリーザ「ぜったいにゆるさんぞ虫ケラども!!!」 from [ドラゴンボール]
+フリーザ「ぜったいにゆるさんぞ虫ケラども!!!」 from [ドラゴンボール]
 ~~~
 
 ## デフォルト阿吽メッセージへのプルリク
@@ -162,6 +181,7 @@ merge か reject かは独断と偏見で行います。
 また元ネタの説明は出来る限り日本語でお願いします。
 
 ## History
+* version 0.0.2 : 原典絞込オプション追加(CLIは未対応)
 * version 0.0.1 : First release.
 
 ## Contributing

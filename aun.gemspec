@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Aun::VERSION
   spec.authors       = ['tbpgr']
   spec.email         = ['tbpgr@tbpgr.jp']
-  spec.summary       = %q(A-Un)
-  spec.description   = %q(A-Un)
+  spec.summary       = 'A-Un'
+  spec.description   = 'A-Un'
   spec.homepage      = 'https://github.com/tbpgr/aun'
   spec.license       = 'MIT'
 
